@@ -17,13 +17,15 @@ a:visited {
 
 /* resets end */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     min-height: 200vh;
 }
-
-/* header start */
 
 /* main start */
 
@@ -45,6 +47,8 @@ main > * {
 
 /* main end */
 
+/* header start */
+
 header {
     position: sticky;
     top: 0;
@@ -57,8 +61,6 @@ header {
     box-shadow: 0px 3px 5px -4px rgba(66, 68, 90, 1);
     z-index: 100;
 }
-
-/* poprawić marginy */
 
 header .main-container {
     display: flex;
@@ -94,6 +96,10 @@ header .category-list {
 
 header .category-list li {
     margin: 0 10px;
+}
+
+header .category-list li:hover {
+    text-decoration: underline;
 }
 
 #hamburger-menu {
@@ -153,7 +159,7 @@ header.reduced .main-logo h1 {
 
 /* header reduced end */
 
-/* articles slide show start */
+/* articles slider start */
 
 .articles-slider-container {
     position: relative;
@@ -224,33 +230,31 @@ header.reduced .main-logo h1 {
     right: 30px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
     .articles-slider-container {
         display: block;
     }
 }
 
-/* articles slide show end */
+/* articles slider end */
 
-/* add1 start */
+/* main add start */
 
-.add1 {
+.main-add {
     height: 30vh;
-    background-color: blueviolet;
+    background-image: url("assets/add_horizontal.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: 1px solid black;
 }
 
-/* add1 end */
+/* main add end */
 
 /* welcome start */
 
-.welcome h1 {
-    position: relative;
+.welcome {
     font-size: 1.8rem;
-}
-
-.welcome .celebrations {
-    color: grey;
-    margin-top: 5px;
 }
 
 /* welcome end */
@@ -291,6 +295,10 @@ header.reduced .main-logo h1 {
     background-image: linear-gradient(to right, purple , violet);
 }
 
+.technology-section .head h1::before {
+    background-image: linear-gradient(to right, black , gray);
+}
+
 .environment-section .head h1::before {
     background-image: linear-gradient(to right, green , lightgreen);
 }
@@ -309,7 +317,7 @@ header.reduced .main-logo h1 {
 }
 
 .articles-section .head h1:hover::before {
-    width: 200%;
+    width: 0%;
 }
 
 @media screen and (min-width: 480px) {
@@ -347,14 +355,20 @@ header.reduced .main-logo h1 {
     filter: brightness(0.6);
 }
 
+.articles-section .article a {
+    width: 100%;
+}
+
 .articles-section .article .container {
     display: flex;
-    justify-content: center;
+    width: 100%;
     padding: 10px;
 }
 
 .articles-section .article .photo {
-    width: 160px;
+    width: 30%;
+    min-width: 100px;
+    max-width: 160px;
     height: 80px;
     background-image: url("assets/photo1.jpg");
     background-size: cover;
@@ -370,7 +384,11 @@ header.reduced .main-logo h1 {
 }
 
 .articles-section .add {
-    background-color: blue;
+    grid-row: span 3;
+    background-image: url("assets/add_vertical.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 .common-grid {
@@ -382,9 +400,9 @@ header.reduced .main-logo h1 {
 
 .articles-section .main-article {
     display: block;
-    height: 100%;
     grid-row: span 3;
 }
+
 .articles-section .main-article .container {
     display: block;
     padding: 0;
@@ -393,7 +411,14 @@ header.reduced .main-logo h1 {
 
 .articles-section .main-article .photo {
     width: 100%;
+    min-width: none;
+    max-width: none;
+    height: 75%;
     border-radius: 0;
+}
+
+.articles-section .main-article .title {
+    height: 25%;
 }
 
 .articles-section .main-article p {
@@ -415,7 +440,7 @@ header.reduced .main-logo h1 {
 }
 
 .articles-section .articles-list li {
-    margin: 5px 0;
+    margin: 10px 0;
     transition: 0.2s;
 }
 
@@ -427,7 +452,6 @@ header.reduced .main-logo h1 {
 @media screen and (min-width: 768px) {
     .articles-section .article {
         display: block;
-        height: 100%;
         border-radius: 0;
     }
     .articles-section .article .container {
@@ -438,11 +462,14 @@ header.reduced .main-logo h1 {
     .articles-section .article .photo {
         width: 100%;
         height: 65%;
+        max-width: none;
+        min-width: none;
         border-radius: 0;
     }
     .articles-section .article .title {
         height: 35%;
     }
+
     .common-grid {
         grid-auto-rows: 250px;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -478,7 +505,7 @@ header.reduced .main-logo h1 {
 /* footer start */
 
 footer {
-    background-color: rgb(51, 51, 51);
+    background-color: rgb(24, 24, 24);
     border-top: 1px solid black;
 }
 
@@ -489,23 +516,25 @@ footer .container {
 footer .container > * {
     padding: 10px;
     text-align: center;
-    background-color: whitesmoke;
-    border: 3px solid burlywood;
-    border-radius: 10px;
+    background-color: rgb(110, 110, 110);
+    border: 1px solid black;
+    border-radius: 5px;
     margin: 10px 0;
+}
+
+footer a {
+    color: rgb(56, 174, 218);
 }
 
 @media screen and (min-width: 768px) {
     footer {
         display: flex;
         justify-content: center;
-        align-items: center;
     }
 
     footer .container {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         width: 85%;
         max-width: 1300px;
     }

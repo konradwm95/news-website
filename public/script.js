@@ -4,10 +4,12 @@ const articlesSlider = document.querySelector(".articles-slider");
 const nextButton = document.querySelector(".next");
 const prevButton = document.querySelector(".prev");
 
+// Header reducing and expanding
 document.addEventListener("scroll", ()=> {
     window.scrollY !== 0 ? header.classList.add("reduced") : header.classList.remove("reduced");
 })
 
+// Set actual date in Welcome Message
 window.addEventListener("load", ()=> {
     const dateElem = document.querySelector(".welcome .date");
 
@@ -23,10 +25,24 @@ window.addEventListener("load", ()=> {
     dateElem.innerText = `${daysNames[dayOfTheWeek]}, ${dayOfTheMonth} ${months[month]}`;
 })
 
-function scrollSlider(elem, value) {
-    const scrollLeft = elem.scrollLeft;
-    elem.scroll(scrollLeft + value, 0);
-}
+// article slider start
+
+let autoScroll;
+autoScroll = setInterval(() => {
+    addElem(articlesSlider, "right");
+    scrollSlider(articlesSlider, 1000);
+}, 5000);
+
+nextButton.addEventListener("click", ()=> {
+    addElem(articlesSlider, "right");
+    scrollSlider(articlesSlider, 1000);
+    restartScroll();
+})
+prevButton.addEventListener("click", ()=> {
+    addElem(articlesSlider, "left");
+    scrollSlider(articlesSlider, -1000);
+    restartScroll();
+})
 
 function addElem(container, site) {
     const firstElem = document.querySelector(".articles-slider > .container:first-child");
@@ -41,11 +57,10 @@ function addElem(container, site) {
     }
 } 
 
-let autoScroll;
-autoScroll = setInterval(() => {
-    addElem(articlesSlider, "right");
-    scrollSlider(articlesSlider, 1000);
-}, 5000);
+function scrollSlider(elem, value) {
+    const scrollLeft = elem.scrollLeft;
+    elem.scroll(scrollLeft + value, 0);
+}
 
 function restartScroll() {
     stopScroll();
@@ -55,18 +70,9 @@ function restartScroll() {
     }, 5000);
 }
 
-nextButton.addEventListener("click", ()=> {
-    addElem(articlesSlider, "right");
-    scrollSlider(articlesSlider, 1000);
-    restartScroll();
-})
-prevButton.addEventListener("click", ()=> {
-    addElem(articlesSlider, "left");
-    scrollSlider(articlesSlider, -1000);
-    restartScroll();
-})
-
 function stopScroll() {
     clearInterval(autoScroll);
 }
+
+// article slider end
 
